@@ -1,0 +1,78 @@
+<div class="information-and-list-planet">
+
+    <article>
+
+        <div class="contentWrapper">
+
+            <mat-form-field appearance="outline" floatLabel="always">
+                <mat-label>Planets</mat-label>
+                <mat-select
+                    [placeholder]="planetsList.length && !loadingplanetsList ? 'Choose planet...' : loadingplanetsList ? 'Loading...' : 'No planet yet'">
+                    <mat-option *ngFor="let planet of planetsList" [value]="planet.name"
+                        (onSelectionChange)='selectPlanet($event, planet)'>
+                        {{planet.name | titlecase}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-table mat-table [dataSource]="dataSource" *ngIf='dataSource.filteredData.length'>
+
+                <ng-container matColumnDef="name">
+                    <mat-header-cell *matHeaderCellDef>
+                        Name
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let planet">
+                        {{ planet?.name || '&#8212;' | titlecase }}
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="diameter">
+                    <mat-header-cell *matHeaderCellDef>
+                        Diameter
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let planet">
+                        {{ planet?.diameter || '&#8212;'}}
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="climate">
+                    <mat-header-cell *matHeaderCellDef>
+                        Climate
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let planet">
+                        {{ planet?.climate || '&#8212;' }}
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="population">
+                    <mat-header-cell *matHeaderCellDef>
+                        Population
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let planet">
+                        {{ planet?.population || '&#8212;' }}
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="[
+                        'name',
+                        'diameter', 
+                        'climate',
+                        'population'
+                    ]">
+                </mat-header-row>
+                <mat-row class="cursor" *matRowDef="
+                        let planet;
+                        columns: ['name', 'diameter', 'climate', 'population']
+                    " (click)='showInfoAboutPlanet(planet)'>
+                </mat-row>
+            </mat-table>
+
+            <span *ngIf='!dataSource.filteredData.length'>
+                Please select the planet you are interested in...
+            </span>
+
+        </div>
+
+    </article>
+
+</div>

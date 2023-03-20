@@ -1,0 +1,30 @@
+li, p{
+    font-size: 16px;
+}
+
+h1, p, li{
+    font-weight: 100;
+}
+
+h1, p{
+    text-align: center;
+}
+
+span{
+    margin-left: 5px;
+}
+
+.closeBtn{
+    width: 200px;
+    height: 48px;
+    background-color: rgba(23,53,130,1);
+    color: white;
+    border-radius: 25px;
+    box-shadow: 0 0 5px rgb(82, 147, 221);
+}
+
+footer, .loadingWrapper{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}

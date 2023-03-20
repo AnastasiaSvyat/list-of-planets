@@ -1,0 +1,43 @@
+<div class="select-planet-container">
+
+    <header>
+        <h1>{{data.planet.name}}</h1>
+    </header>
+
+    <div *ngIf='loading' class="loadingWrapper">
+        <mat-spinner></mat-spinner>
+    </div>
+
+    <div *ngIf='!loading'>
+
+        <section *ngIf='residentsList.length'>
+            <ol>
+                <li *ngFor='let resident of residentsList'>
+                    <span>
+                        {{resident.name}},
+                    </span>
+                    <span>
+                        {{resident.height}},
+                    </span>
+                    <span>
+                        {{resident.birth_year}}
+                    </span>
+                </li>
+            </ol>
+        </section>
+
+        <div *ngIf='!residentsList.length'>
+            <p>
+                Unfortunately, there are no residents on this planet yet...
+            </p>
+        </div>
+
+        <footer>
+            <button mat-raised-button class="closeBtn" (click)='closeBtn()'>
+                CLOSE
+            </button>
+        </footer>
+
+    </div>
+
+</div>
